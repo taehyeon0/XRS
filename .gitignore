@@ -69,10 +69,10 @@ crashlytics-build.properties
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
 
-/Assets/Oculus/
-/Assets/Photon/
-/Assets/XR/
+#/Assets/Oculus/
+#/Assets/Photon/
+#/Assets/XR/
 
-!/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset
+#!/Assets/Photon/PhotonUnityNetworking/Resources/PhotonServerSettings.asset
 
 .vsconfig
