@@ -27,7 +27,6 @@ public class NetworkAvatar : OvrAvatarEntity
         m_instantiationData = GetUserIdFromPhotonInstantiationData();
         _userId = m_instantiationData;
         StartCoroutine(TryToLoadUser());
-        LoadUser();
     }
 
     void ConfigureAvatarEntity()
