@@ -10,7 +10,7 @@ using System;
 public class LogInManager : MonoBehaviourPunCallbacks
 {
     const string ROOM_NAME = "Meta Avatar Sdk Test Room";
-    const float SPAWN_POS_Z = 1f;
+    const float SPAWN_POS_Z = 0f;
     const string AVATAR_PREFAB_NAME = "Player";
 
     [SerializeField] Camera m_camera;
@@ -136,8 +136,10 @@ public class LogInManager : MonoBehaviourPunCallbacks
 
     void InstantiateNetworkedAvatar()
     {
-        float rand_x = UnityEngine.Random.Range(m_minSpawnPos_x, m_maxSpawnPos_x);
-        float rand_z = UnityEngine.Random.Range(m_minSpawnPos_z, m_maxSpawnPos_z);
+        // float rand_x = UnityEngine.Random.Range(m_minSpawnPos_x, m_maxSpawnPos_x);
+        // float rand_z = UnityEngine.Random.Range(m_minSpawnPos_z, m_maxSpawnPos_z);
+        float rand_x = 0f;
+        float rand_z = 3f;
         Vector3 spawnPos = new Vector3(rand_x, SPAWN_POS_Z, rand_z);
         Int64 userId = Convert.ToInt64(m_userId);
         object[] objects = new object[1] { userId };
