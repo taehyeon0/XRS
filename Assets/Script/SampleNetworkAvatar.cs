@@ -39,6 +39,7 @@ public class SampleNetworkAvatar : OvrAvatarEntity
         }
         else
         {
+            OvrAvatarLog.LogError("THAN : Others");
             SetIsLocal(false);
             _creationInfo.features = Oculus.Avatar2.CAPI.ovrAvatar2EntityFeatures.Preset_Remote;
             SampleInputManager sampleInputManager = OvrAvatarManager.Instance.gameObject.GetComponent<SampleInputManager>();
@@ -149,6 +150,8 @@ public class SampleNetworkAvatar : OvrAvatarEntity
     {
         m_instantiationData = GetUserIdFromPhotonInstantiationData();
         _userId = m_instantiationData;
+
+        OvrAvatarLog.LogError("THAN : UserID" + _userId);
 
         if (!_deferLoading)
         {

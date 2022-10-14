@@ -10,14 +10,14 @@ using System;
 public class LogInManager : MonoBehaviourPunCallbacks
 {
     const string ROOM_NAME = "Meta Avatar Sdk Test Room";
-    const float SPAWN_POS_Z = 0f;
+    const float SPAWN_POS_Z = 1f;
     const string AVATAR_PREFAB_NAME = "Player";
 
-    [SerializeField] Camera m_camera;
-    [SerializeField] float m_minSpawnPos_x = -5f;
-    [SerializeField] float m_maxSpawnPos_x = 5f;
-    [SerializeField] float m_minSpawnPos_z = -5f;
-    [SerializeField] float m_maxSpawnPos_z = 5f;
+    [SerializeField] GameObject m_camera;
+    [SerializeField] float m_minSpawnPos_x = -3f;
+    [SerializeField] float m_maxSpawnPos_x = 3f;
+    [SerializeField] float m_minSpawnPos_z = -3f;
+    [SerializeField] float m_maxSpawnPos_z = 3f;
     [SerializeField] ulong m_userId;
 
     //Singleton implementation
@@ -130,21 +130,24 @@ public class LogInManager : MonoBehaviourPunCallbacks
             yield return null;
         }
 
+        Debug.LogError("THAN : InstantiateNetworkedAvatar");
         InstantiateNetworkedAvatar();
 
     }
 
     void InstantiateNetworkedAvatar()
     {
-        // float rand_x = UnityEngine.Random.Range(m_minSpawnPos_x, m_maxSpawnPos_x);
-        // float rand_z = UnityEngine.Random.Range(m_minSpawnPos_z, m_maxSpawnPos_z);
-        float rand_x = 0f;
-        float rand_z = 3f;
+        float rand_x = UnityEngine.Random.Range(m_minSpawnPos_x, m_maxSpawnPos_x);
+        float rand_z = UnityEngine.Random.Range(m_minSpawnPos_z, m_maxSpawnPos_z);
+        //float rand_x = 0f;
+        //float rand_z = -3f;
         Vector3 spawnPos = new Vector3(rand_x, SPAWN_POS_Z, rand_z);
         Int64 userId = Convert.ToInt64(m_userId);
         object[] objects = new object[1] { userId };
         Debug.LogError("THAN: InstantiateNetworkedAvatar START");
+        //PhotonNetwork.Instantiate(AVATAR_PREFAB_NAME, spawnPos, Quaternion.identity, 0, objects);
         GameObject myAvatar = PhotonNetwork.Instantiate(AVATAR_PREFAB_NAME, spawnPos, Quaternion.identity, 0, objects);
+        //myAvatar.gameObject.transform.SetParent(GameObject.Find("OVRCameraRig").transform);
         m_camera.transform.SetParent(myAvatar.transform);
         m_camera.transform.localPosition = Vector3.zero;
         m_camera.transform.localRotation = Quaternion.identity;
