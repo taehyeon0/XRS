@@ -7,6 +7,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using Oculus.Avatar2;
+using UnityEngine.UI;
 #if USING_XR_SDK
 using Oculus.Platform;
 #endif
@@ -27,8 +28,11 @@ public class SampleNetworkAvatar : OvrAvatarEntity
     void ConfigureAvatarEntity()
     {
         m_photonView = GetComponent<PhotonView>();
+
         if (m_photonView.IsMine)
         {
+            nameText.text = "MyAvatar";
+            nameText.color = Color.green;
             SetIsLocal(true);
             _creationInfo.features = Oculus.Avatar2.CAPI.ovrAvatar2EntityFeatures.Preset_Default;
             SampleInputManager sampleInputManager = OvrAvatarManager.Instance.gameObject.GetComponent<SampleInputManager>();
@@ -39,6 +43,8 @@ public class SampleNetworkAvatar : OvrAvatarEntity
         }
         else
         {
+            nameText.text = "OtherAvatar";
+            nameText.color = Color.red;
             OvrAvatarLog.LogError("THAN : Others");
             SetIsLocal(false);
             _creationInfo.features = Oculus.Avatar2.CAPI.ovrAvatar2EntityFeatures.Preset_Remote;
@@ -106,6 +112,8 @@ public class SampleNetworkAvatar : OvrAvatarEntity
     [SerializeField]
     [Range(4.0f, 320.0f)]
     private float _changeCheckInterval = 8.0f;
+
+    public Text nameText;
 
 #pragma warning disable CS0414
     [Header("Debug Drawing")]

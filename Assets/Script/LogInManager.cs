@@ -43,6 +43,10 @@ public class LogInManager : MonoBehaviourPunCallbacks
 
     void Start()
     {
+        int num = UnityEngine.Random.Range(0, 1000);
+        PhotonNetwork.NickName = "Player" + num.ToString();
+        Debug.LogError("THAN: NickName Init: " + PhotonNetwork.NickName);
+
         StartCoroutine(SetUserIdFromLoggedInUser());
         StartCoroutine(ConnectToPhotonRoomOnceUserIdIsFound());
         StartCoroutine(InstantiateNetworkedAvatarOnceInRoom());
